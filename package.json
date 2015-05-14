@@ -1,0 +1,16 @@
+{
+  "name": "ssgl",
+  "version": "1.0.0",
+  "description": "Server Side GL Test",
+  "main": "server.js",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-nodemon": "^2.0.3",
+    "gulp-tsc": "^0.9.5",
+    "run-sequence": "^1.1.0"
+  },
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
