@@ -1,4 +1,4 @@
-/// <reference path="d/tsd.d.ts" />
+/// <reference path="d/server.d.ts" />
 /// <reference path="lib/util.ts" />
 
 var express = require('express');

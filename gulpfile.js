@@ -18,7 +18,9 @@ gulp.task('client', function() {
   return gulp.src('src/client.ts')
     .pipe(tsc({
       out: 'ssgl.js',
-      sourceMap: true
+      sourceMap: true,
+      target: 'ES5',
+      emitDecoratorMetadata: true
     }))
     .pipe(gulp.dest('www/js'));
 });
@@ -43,7 +45,7 @@ gulp.task('run', ['server'], function(cb) {
   })
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['client', 'server'], function() {
   gulp.watch(['src/client.ts', 'src/lib/**/*.ts', 'src/clieny/**/*.ts'], ['client']);
   gulp.watch(['src/server.ts', 'src/lib/**/*.ts', 'src/server/**/*.ts'], ['server']);
 });
