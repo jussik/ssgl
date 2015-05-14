@@ -2,14 +2,12 @@ var gulp = require('gulp');
 var del = require('del');
 var tsc = require('gulp-tsc');
 var seq = require('run-sequence');
-//var exec = require('child_process').exec;
 var nodemon = require('gulp-nodemon');
 
 gulp.task('server', function() {
   return gulp.src('src/server.ts')
     .pipe(tsc({
-      out: 'server.js',
-      sourceMap: true
+      //sourceMap: true
     }))
     .pipe(gulp.dest('srv'));
 });
@@ -17,8 +15,7 @@ gulp.task('server', function() {
 gulp.task('client', function() {
   return gulp.src('src/client.ts')
     .pipe(tsc({
-      out: 'ssgl.js',
-      sourceMap: true,
+      //sourceMap: true,
       target: 'ES5',
       emitDecoratorMetadata: true
     }))
@@ -31,10 +28,10 @@ gulp.task('rebuild', function(cb) {
 
 
 gulp.task('clean:server', function(cb) {
-  del('srv/server.*', cb);
+  del('srv/', cb);
 });
 gulp.task('clean:client', function(cb) {
-  del('www/js/ssgl.*', cb);
+  del('www/js/', cb);
 });
 gulp.task('clean', ['clean:server', 'clean:client']);
 

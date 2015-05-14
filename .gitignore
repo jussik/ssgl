@@ -1,4 +1,4 @@
 .*.swp
 node_modules
 srv/
-www/js/ssgl.*
+www/js/

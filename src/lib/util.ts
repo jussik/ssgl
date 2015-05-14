@@ -1,6 +1,4 @@
-module Utils {
-  export function hello(name: string) {
-    return `Hello, ${name}!`;
-  }
+export function Hello(name: string) {
+  return `Hello, ${name}!`;
 }
 

@@ -1,10 +1,11 @@
 /// <reference path="d/server.d.ts" />
-/// <reference path="lib/util.ts" />
 
-var express = require('express');
+import * as express from 'express';
+import * as Utils from './lib/util';
+
 var app = express();
-
-app.get('/', (req, res) => res.send(Utils.hello("Server")));
+app.use(express.static('www'));
+app.get('/hello', (req, res) => res.send(Utils.Hello("Server")));
 
 var server = app.listen(8080, () => console.log("Listening on " + server.address().port));
 
