@@ -10,9 +10,6 @@
     },
     "node/node.d.ts": {
       "commit": "d4ffb7e9f8bc8e9a4d21fe63e467ffb304528f91"
-    },
-    "angular2/angular2.d.ts": {
-      "commit": "68114f9ff37de0f92c94126b6e0164e026a1737a"
     }
   }
 }

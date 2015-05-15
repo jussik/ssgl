@@ -1,15 +1,19 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>SSGL</title>
-  </head>
-  <body>
-    <ssgl>Loading...</ssgl>
-    <script src="https://github.jspm.io/jmcriffey/bower-traceur-runtime@0.0.87/traceur-runtime.js"></script>
-    <script src="//jspm.io/system@0.16.js"></script>
-    <script src="//code.angularjs.org/2.0.0-alpha.22/angular2.dev.js"></script>
-    <script>
-      System.baseURL = 'js';
-      System.import('client');
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>SSGL</title>
+</head>
+<body aurelia-app>
+  <script src="jslib/system.js"></script>
+  <script src="jslib/config.js"></script>
+  <script>
+    System.config({
+      paths: {
+        "*": "ssgl/*.js"
+      }
+    });
+    System.import('aurelia-bootstrapper');
+  </script>
+</body>
 </html>

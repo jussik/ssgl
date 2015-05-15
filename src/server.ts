@@ -1,7 +1,7 @@
 /// <reference path="d/server.d.ts" />
 
 import * as express from 'express';
-import * as Utils from './lib/util';
+import * as Utils from './ssgl/lib/util';
 
 var app = express();
 app.use(express.static('www'));
