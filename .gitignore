@@ -1,4 +1,5 @@
 .*.swp
+config.json
 node_modules
 srv/
 www/jslib
