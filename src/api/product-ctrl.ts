@@ -13,12 +13,6 @@ export default function(app: Application, apiRoot: string) {
   app.post(apiRoot, (req, res) => {
     var data = req.body;
     delete data.id;
-    Product.create(data, (err, results) => {
-      if(err) {
-        res.status(500).send(err);
-      } else {
-        res.send(results);
-      }
-    })
+    Product.create(data, respond(res));
   });
 }
