@@ -11,6 +11,7 @@
     "run-sequence": "^1.1.0"
   },
   "dependencies": {
+    "body-parser": "^1.12.4",
     "express": "^4.12.3",
     "orm": "^2.1.25",
     "pg": "^4.3.0"

@@ -10,4 +10,15 @@ function respond(res) {
 export default function(app: Application, apiRoot: string) {
   app.get(apiRoot, (req, res) => Product.all(respond(res)));
   app.get(apiRoot + "/:id(\\d+)", (req, res) => Product.get(+req.params.id, respond(res)));
+  app.post(apiRoot, (req, res) => {
+    var data = req.body;
+    delete data.id;
+    Product.create(data, (err, results) => {
+      if(err) {
+        res.status(500).send(err);
+      } else {
+        res.send(results);
+      }
+    })
+  });
 }
