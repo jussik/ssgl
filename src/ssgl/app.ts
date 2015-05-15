@@ -1,23 +1,19 @@
 /// <reference path="../d/client.d.ts" />
 
+import {inject, autoinject} from 'aurelia-framework';
+import {HttpClient} from 'aurelia-http-client';
 import * as Utils from 'lib/util';
-//import {Aurelia} from 'aurelia-framework/aurelia';
 
 console.log(Utils.Hello("Console"));
 
+@inject(HttpClient)
 export class App {
-  name: string = "App";
-  constructor() {
-    console.log("INIT", this.name);
+  name: string = "Hmm...";
+  constructor(http: HttpClient) {
+    http.get('/hello').then(resp =>
+        setTimeout(
+          () => this.name = resp.response,
+          1000));
   }
 }
-
-/*export function configure(aurelia: Aurelia) {
-  console.log("config", aurelia);
-  aurelia.use
-    .standardConfiguration()
-    .developmentLogging();
-
-  aurelia.start().then(a => a.setRoot('main'));
-}*/
 

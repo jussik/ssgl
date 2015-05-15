@@ -8,7 +8,8 @@ gulp.task('server', function() {
   return gulp.src('src/server.ts')
     .pipe(tsc({
       //sourceMap: true
-      target: 'ES5'
+      target: 'es5',
+      emitError: false
     }))
     .pipe(gulp.dest('srv'));
 });
@@ -17,14 +18,14 @@ gulp.task('client', function() {
   return gulp.src('src/ssgl/app.ts')
     .pipe(tsc({
       //sourceMap: true,
-      target: 'ES5',
-      emitDecoratorMetadata: true
+      target: 'es5',
+      emitError: false
     }))
     .pipe(gulp.dest('www/ssgl'));
 });
 
 gulp.task('rebuild', function(cb) {
-  seq("clean", "default", cb);
+  seq("clean", ["client", "server"], cb);
 });
 
 
@@ -44,8 +45,8 @@ gulp.task('run', ['server'], function(cb) {
 });
 
 gulp.task('watch', ['client', 'server'], function() {
-  gulp.watch(['src/lib/**/*.ts', 'src/ssgl/**/*.ts'], ['client']);
-  gulp.watch(['src/server.ts', 'src/lib/**/*.ts', 'src/server/**/*.ts'], ['server']);
+  gulp.watch(['src/ssgl/**/*.ts'], ['client']);
+  gulp.watch(['src/server.ts', 'src/ssgl/lib/**/*.ts', 'src/server/**/*.ts'], ['server']);
 });
 
 gulp.task('default', ['watch', 'run']);
