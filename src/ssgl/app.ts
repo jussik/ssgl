@@ -10,7 +10,7 @@ class Product {
 }
 
 class Api<T> {
-  path: string;
+  private path: string;
   constructor(private http: HttpClient, target: string) {
     this.path = '/api/' + target;
   }

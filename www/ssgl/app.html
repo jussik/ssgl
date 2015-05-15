@@ -3,6 +3,6 @@
   <div repeat.for="p of products">${p.id}: ${p.name}</div>
   <div>
     <input type="text" value.two-way="form.name">
-    <button click.trigger="add()">Add</button>
+    <button click.trigger="add()" disabled.bind="!form.name">Add</button>
   </div>
 </template>
