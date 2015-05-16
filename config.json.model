@@ -1,3 +1,4 @@
 {
-  "db": "driver://user:password@hostname/db"
+  "db": "driver://user:password@hostname/db",
+  "logSql": false
 }

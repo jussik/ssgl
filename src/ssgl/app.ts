@@ -28,6 +28,11 @@ class Api<T> {
       .send()
       .then(resp => <T>JSON.parse(resp.response));
   }
+  delete(id: number): Promise<void> {
+    return (<any>this.http.createRequest(`${this.path}/${id}`))
+      .asDelete()
+      .send();
+  }
 }
 
 @inject(HttpClient)
@@ -44,6 +49,10 @@ export class App {
   add() {
     this.api.post(this.form)
       .then(prod => this.products.push(prod));
+  }
+  remove(prod, index) {
+    this.products.splice(index, 1);
+    this.api.delete(prod.id);
   }
 }
 

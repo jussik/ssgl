@@ -1,6 +1,9 @@
 <template>
   <h1>Products</h1>
-  <div repeat.for="p of products">${p.id}: ${p.name}</div>
+  <div repeat.for="p of products">
+    ${p.id}: ${p.name}
+    <a click.trigger="$parent.remove(p, $index)">&times;</a>
+  </div>
   <div>
     <input type="text" value.two-way="form.name">
     <button click.trigger="add()" disabled.bind="!form.name">Add</button>
