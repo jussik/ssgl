@@ -3,9 +3,11 @@ import {Product} from './schema';
 
 function send(fn: (req?: Request) => any, code?: number): (req: Request, res: Response) => any {
   return (req, res) => fn(req).then(
-      data => (code !== undefined || data === null)
-        ? res.status(code || 404).end()
-        : res.json(data),
+      code !== undefined
+        ? data => res.status(code).end() // just send code if defined
+        : (data => data === null
+          ? res.status(404).end() // send 404 if data is null
+          : res.json(data)),
       err => res.status(500).send(err.toString()));
 }
 
