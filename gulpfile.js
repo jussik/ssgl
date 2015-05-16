@@ -7,7 +7,7 @@ var nodemon = require('gulp-nodemon');
 gulp.task('server', ['config'], function() {
   return gulp.src('src/server.ts')
     .pipe(tsc({
-      //sourceMap: true
+      //sourceMap: true,
       target: 'es5',
       emitError: false
     }))
