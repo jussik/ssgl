@@ -1,17 +1,16 @@
 import Config from '../config';
+import * as sql from 'sequelize';
 
-export var Product;
-export function register(db, models, next) {
-  var config = <Config>require('../config.json');
-  if(config.logSql) {
-    db.driver.execQuery("set log_statement = 'all'", (err, _) => err
-        ? console.error("Error while enabling SQL logging: " + err.toString())
-        : console.log("SQL logging enabled."));
+var config = <Config>require('../config.json');
+var db = new sql(config.db, {
+  define: {
+    timestamps: false,
+    freezeTableName: true,
+    underscoredAll: true
   }
+});
 
-  Product = db.define('product', {
-    id: Number,
-    name: { type: "text", required: true }
-  });
-  db.sync(next);
-}
+export const Product = db.define('product', {
+  name: { type: sql.TEXT, allowNull: false }
+});
+Product.sync();
