@@ -1,0 +1,12 @@
+<template>
+  <require from="./productForm"></require>
+  <require from="./color"></require>
+
+  <h1>Products</h1>
+  <div repeat.for="p of products">
+    ${p.id}: ${p.name}
+    <span color="value.bind: p.color">&#9608;</span>
+    <a click.trigger="$parent.remove(p, $index)">&times;</a>
+  </div>
+  <product-form></product-form>
+</template>
