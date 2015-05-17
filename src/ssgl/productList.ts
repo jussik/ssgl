@@ -12,7 +12,7 @@ export class ProductList {
   private api: Api<Product>;
 
   constructor(af: ApiFactory) {
-    this.api = af.create<Product>('product');
+    this.api = af.create('product', Product);
     this.api.all()
       .then(prods => this.products = prods);
   }
