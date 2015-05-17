@@ -2,21 +2,24 @@
 
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
-import {Model} from './lib/model';
+import {Model, getTableName} from './lib/model';
 
 @inject(HttpClient)
 export class ApiFactory {
   constructor(private http: HttpClient) { }
-  create<T extends Model>(target: string, ctor: { new(): T }): Api<T> {
-    return new Api<T>(this.http, target, ctor);
+  create<T extends Model>(ctor: { new(): T }): Api<T> {
+    return new Api<T>(this.http, ctor);
   }
 }
 
 export class Api<T extends Model> {
   private path: string;
 
-  constructor(private http: HttpClient, target: string, private ctor: { new(): T }) {
-    this.path = '/api/' + target;
+  constructor(private http: HttpClient, private ctor: { new(): T }) {
+    var target = getTableName(ctor);
+    if(target == null)
+      throw "Table name not defined for type " + ctor.name;
+    this.path = '/api/' + getTableName(ctor);
   }
   all(): Promise<T[]> {
     return (<any>this.http.createRequest(this.path))
