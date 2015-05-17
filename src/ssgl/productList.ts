@@ -3,7 +3,8 @@
 /// <reference path="./color.ts" />
 
 import {inject} from 'aurelia-framework';
-import {ApiFactory, Api, Product} from './api'
+import {ApiFactory, Api} from './api'
+import {Product} from './lib/types'
 
 @inject(ApiFactory)
 export class ProductList {

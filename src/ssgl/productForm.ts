@@ -4,7 +4,7 @@
 import {inject, customElement} from 'aurelia-framework';
 import {Validation} from 'aurelia-validation';
 import {ValidationGroup} from 'aurelia-validation/validation/validation-group';
-import {Product} from './api';
+import {Product} from './lib/types'
 import {ProductList} from './productList';
 
 @customElement('product-form')

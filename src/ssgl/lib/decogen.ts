@@ -31,7 +31,6 @@ export function makeDecorator(opts: any): any {
   var rootKey = Symbol("decogen-decorations");
   var root = annotate({});
   root[masterKey] = rootKey;
-  console.log(root);
   return root;
 }
 

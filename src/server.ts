@@ -2,7 +2,6 @@
 
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import * as Utils from './ssgl/lib/util';
 import * as api from './api/api';
 import Config from './config';
 import './api/schema';
