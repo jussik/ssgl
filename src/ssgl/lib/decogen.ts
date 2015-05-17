@@ -1,6 +1,6 @@
 const masterKey = Symbol("decogen-key");
 
-export function makeDecorator(opts: any): any {
+export function makeDecorator(opts: any, defaults: any): any {
   function annotate(data) {
     function fn(target, key) {
       var store = target[rootKey] || (target[rootKey] = {});
@@ -29,11 +29,12 @@ export function makeDecorator(opts: any): any {
   }
 
   var rootKey = Symbol("decogen-decorations");
-  var root = annotate({});
+  var root = annotate(defaults || {});
   root[masterKey] = rootKey;
   return root;
 }
 
 export function getDecorations(root: any, target: any): any {
-  return target.prototype[root[masterKey]];
+  var rootKey = root[masterKey];
+  return rootKey && target.prototype[rootKey] || null;
 }

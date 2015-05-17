@@ -4,7 +4,12 @@ export const column = makeDecorator({
   primary: { primary: true },
   required: { required: true },
   int: { type: "int" },
+  serial: { type: "serial" },
   text: { type: "text" }
+}, {
+  primary: false,
+  required: false,
+  type: null
 });
 export function getColumns(target) {
   return getDecorations(column, target);
@@ -17,7 +22,7 @@ export function table(name) {
   }
 }
 export function getTableName(target) {
-  return target.prototype[tableKey];
+  return target.prototype[tableKey] || null;
 }
 
 export class Model {

@@ -2,7 +2,7 @@ import {Model, table, column} from './model';
 
 @table('product')
 export class Product extends Model {
-  @column.primary.int
+  @column.serial.primary
   id: number;
   @column.text.required
   name: string = null;
