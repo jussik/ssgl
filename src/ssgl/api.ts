@@ -2,7 +2,7 @@
 
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
-import {Model} from './lib/types';
+import {Model} from './lib/model';
 
 @inject(HttpClient)
 export class ApiFactory {

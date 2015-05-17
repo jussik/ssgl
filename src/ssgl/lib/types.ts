@@ -1,32 +1,11 @@
-import {makeDecorator} from './decogen';
+import {Model, table, column} from './model';
 
-var model = makeDecorator({
-  primary: { primary: true },
-  required: { required: true },
-  int: { type: "int" },
-  text: { type: "text" }
-});
-
-export class Model {
-  load(data) {
-    for(var k in data) {
-      this[k] = data[k];
-    }
-    return this;
-  }
-  fill(data) {
-    for(var k in this) {
-      data[k] = this[k];
-    }
-    return data;
-  }
-}
-
+@table('product')
 export class Product extends Model {
-  @model.primary.int
+  @column.primary.int
   id: number;
-  @model.text.required
+  @column.text.required
   name: string = null;
-  @model.int.required
+  @column.int.required
   color: number = null;
 }
