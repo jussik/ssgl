@@ -2,9 +2,9 @@
 
 import {inject, customAttribute, bindable} from 'aurelia-framework';
 
-@customAttribute('color')
+@customAttribute('color-box')
 @inject(Element)
-export class ColorValue {
+export class ColorBox {
   @bindable name: string = null;
   @bindable value: number = null;
 

@@ -1,13 +1,15 @@
 <template>
   <require from="./color"></require>
+  <require from="./productCanvas"></require>
 
   <form submit.delegate="add()" validate.bind="validation">
     <input type="text" placeholder="Name" value.two-way="prod.name">
     <br>
     <input type="text" placeholder="Color" value.two-way="colorName">
-    <span color="name.bind: colorName; value.two-way: prod.color"
+    <span color-box="name.bind: colorName; value.two-way: prod.color"
           css="color:${colorName}" show.bind="prod.color != null">&#9608;</span>
     <br>
     <button type="submit" disabled.bind="!validation.result.isValid">Add</button>
+    <product-canvas color.bind="prod.color"></product-canvas>
   </form>
 </template>

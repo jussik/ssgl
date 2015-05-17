@@ -4,7 +4,7 @@
 
   <div repeat.for="p of products">
     ${p.id}: ${p.name}
-    <span color="value.bind: p.color">&#9608;</span>
+    <span color-box="value.bind: p.color">&#9608;</span>
     <a click.trigger="$parent.remove(p, $index)">&times;</a>
   </div>
   <product-form></product-form>

@@ -1,4 +1,5 @@
 /// <reference path="../d/client.d.ts" />
+/// <reference path="./productCanvas.ts" />
 /// <reference path="./color.ts" />
 
 import {inject, customElement} from 'aurelia-framework';
