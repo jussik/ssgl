@@ -27,13 +27,22 @@ export class Api<T extends Model> {
       .send()
       .then(resp => JSON.parse(resp.response).map(data => new this.ctor().load(data)))
   }
-  post(data: T): Promise<T> {
-    return (<any>this.http.createRequest(this.path))
-      .asPost()
-      .withContent(data)
-      .withHeader('Content-Type', 'application/json; charset=utf-8')
-      .send()
-      .then(resp => new this.ctor().load(JSON.parse(resp.response)));
+  save(data: T): Promise<T> {
+    if(data.id != null) {
+      return (<any>this.http.createRequest(`${this.path}/${data.id}`))
+        .asPut()
+        .withContent(data)
+        .withHeader('Content-Type', 'application/json; charset=utf-8')
+        .send()
+        .then(() => data);
+    } else {
+      return (<any>this.http.createRequest(this.path))
+        .asPost()
+        .withContent(data)
+        .withHeader('Content-Type', 'application/json; charset=utf-8')
+        .send()
+        .then(resp => new this.ctor().load(JSON.parse(resp.response)));
+    }
   }
   delete(id: number): Promise<void> {
     return (<any>this.http.createRequest(`${this.path}/${id}`))

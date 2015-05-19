@@ -20,5 +20,6 @@ export default function(app: Application, apiRoot: string) {
     delete data.id;
     return Product.create(data);
   }));
+  app.put(apiRoot + id, send(req => Product.update(req.body, { where: { id: +req.params.id } }), 200));
   app.delete(apiRoot + id, send(req => Product.destroy({ where: { id: +req.params.id } }), 204));
 }

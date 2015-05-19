@@ -26,6 +26,9 @@ export function getTableName(target) {
 }
 
 export class Model {
+  @column.serial.primary
+  id: number;
+  
   load(data) {
     for(var k in data) {
       this[k] = data[k];
@@ -37,5 +40,12 @@ export class Model {
       data[k] = this[k];
     }
     return data;
+  }
+  clone() {
+    var copy = new (<any>this.constructor)();
+    for(var k in this) {
+      copy[k] = this[k];
+    }
+    return copy;
   }
 }

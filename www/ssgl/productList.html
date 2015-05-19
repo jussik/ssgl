@@ -1,11 +1,12 @@
 <template>
   <require from="./productForm"></require>
-  <require from="./color"></require>
+  <require from="./colorBox"></require>
 
   <div repeat.for="p of products">
-    ${p.id}: ${p.name}
-    <span color-box="value.bind: p.color">&#9608;</span>
+    <a click.trigger="$parent.edit(p)">${p.id}: ${p.name}</a>
+    <span color-box.bind="p.color">&#9608;</span>
     <a click.trigger="$parent.remove(p, $index)">&times;</a>
   </div>
+  <button click.trigger="edit()">New</button>
   <product-form></product-form>
 </template>

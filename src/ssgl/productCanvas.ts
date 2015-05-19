@@ -1,8 +1,8 @@
 /// <reference path="../d/client.d.ts" />
-/// <reference path="./color.ts" />
 
 import {customElement, noView, inject, bindable} from 'aurelia-framework';
-import {Product} from './lib/types'
+import {Product} from './lib/types';
+import * as THREE from 'three';
 
 @customElement('product-canvas')
 @noView
@@ -18,6 +18,7 @@ export class ProductCanvas {
   private camera: THREE.Camera;
   private light: THREE.Light;
   private mesh: THREE.Mesh;
+  private material: THREE.MeshPhongMaterial;
 
   constructor(elem: HTMLElement) {
     this.canvas = document.createElement("canvas");
@@ -34,15 +35,14 @@ export class ProductCanvas {
     this.scene = new THREE.Scene();
     this.scene.add(this.light);
 
-    this.mesh = new THREE.Mesh(
-        new THREE.BoxGeometry(10, 10, 10),
-        new THREE.MeshPhongMaterial({
-          ambient: 0xffffff,
-          color: 0x9d9d9d,
-          specular: 0x161616,
-          shininess: 30,
-          shading: THREE.FlatShading
-        }));
+  	this.material = new THREE.MeshPhongMaterial({
+  	  ambient: 0xffffff,
+  	  color: 0x9d9d9d,
+  	  specular: 0x161616,
+  	  shininess: 30,
+  	  shading: THREE.FlatShading
+  	});
+    this.mesh = new THREE.Mesh(new THREE.BoxGeometry(10, 10, 10), this.material);
     this.scene.add(this.mesh);
 
     this.resize();
@@ -51,7 +51,7 @@ export class ProductCanvas {
     this.renderer.setSize(this.width, this.height);
 
     this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.1, 1000);
-    this.camera.position.set(120, 100, 180);
+    this.camera.position.set(12, 10, 18);
     this.camera.up = new THREE.Vector3(0, 1, 0);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -62,6 +62,7 @@ export class ProductCanvas {
     this.renderer.render(this.scene, this.camera);
   }
   colorChanged(val) {
+    this.material.color = new THREE.Color(val != null ? val : 0x9d9d9d);
     this.render();
   }
 }
